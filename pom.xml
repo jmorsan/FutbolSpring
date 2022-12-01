@@ -12,9 +12,9 @@
     </parent>
 
 	<groupId>es.jms.psp.ud2</groupId>
-	<artifactId>sumador_enteros_positivos</artifactId>
+	<artifactId>futbol_spring</artifactId>
 	<version>1.0.0</version>
-	<name>sumador_enteros_positivos</name>
+	<name>FutbolSpring</name>
 	
 	<description>This example shows how to add positive numbers in different ways</description>
 	

@@ -47,14 +47,72 @@ public final class RestHandlerJugador
     {
 	    // Empty constructor because of Spring dependency
     }
+
+
+	@RequestMapping(method = RequestMethod.POST, value = "/jugador/acciones"	)
+	public ResponseEntity<?> crearJugador(@RequestBody(required=true) final Jugador jugador)
+	{
+		List<Jugador>listaJugadores = new ArrayList<Jugador>();
+		try
+		{
+
+
+			listaJugadores.add(jugador);
+
+
+		}
+		catch (JugadorError jugadorException)
+		{
+			return ResponseEntity.status(404).body(jugadorException.getBodyExceptionMessage()) ;
+		}
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/lista"	)
+	public ResponseEntity<?> listaJugadores()
+	{
+
+		List<Jugador>listaJugadores = new ArrayList<Jugador>();
+
+		Jugador jugador1 = new Jugador();
+		jugador1.setDorsal(12);
+		jugador1.setGoles(3);
+		jugador1.setNombre("David Tyson Fury");
+
+		Jugador jugador2 = new Jugador();
+		jugador2.setDorsal(69);
+		jugador2.setGoles(9);
+		jugador2.setNombre("Neil Ramires");
+
+		listaJugadores.add(jugador1);
+		listaJugadores.add(jugador2);
+
+		try
+		{
+
+			if (listaJugadores.isEmpty())
+			{
+
+				throw new JugadorError(404, "Lista Vacía");
+			}
+			else
+			{
+				return ResponseEntity.ok().body(listaJugadores) ;
+			}
+		}
+		catch (JugadorError jugadorException)
+		{
+			return ResponseEntity.status(404).body(jugadorException.getBodyExceptionMessage()) ;
+		}
+	}
+
 	//PathVariable -> parametros del Path -> Los relacionamos directamente con las variables
 	//No se puede cambiar el nombre de PathVariable pero si el de la variable.
-	@RequestMapping(method = RequestMethod.GET, value = "/Jugador/Acciones/{numeroDorsal}"	)
-	public ResponseEntity<?> buscarJugador(@PathVariable(value="dorsal") final Integer dorsal)
+	@RequestMapping(method = RequestMethod.GET, value = "/jugador/acciones/{numeroDorsal}"	)
+	public ResponseEntity<?> buscarJugador(@PathVariable(value="numeroDorsal") final Integer dorsal)
 	{
 		try
 		{
-			//List<Jugador>listaJugadores = crearLista();
+
 			List<Jugador>listaJugadores = new ArrayList<Jugador>();
 
 			Jugador jugador1 = new Jugador();
@@ -70,7 +128,6 @@ public final class RestHandlerJugador
 			listaJugadores.add(jugador1);
 			listaJugadores.add(jugador2);
 
-			//Jugador jugadorDorsal = null;
 
 			for(Jugador jugador : listaJugadores)
 			{
@@ -92,14 +149,7 @@ public final class RestHandlerJugador
 		}
 	}
 
-	/**
-	public List<Jugador> crearLista()
-	{
 
-
-		return listaJugadores;
-	}
-	 **/
 	
 
 }

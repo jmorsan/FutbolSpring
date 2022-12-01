@@ -1,6 +1,6 @@
 swagger: '2.0'
 host: jugadores.com
-basePath: /Jugadores
+basePath: /jugadores
 produces:
   - aplication/json
 info:
@@ -15,7 +15,7 @@ schemes:
   - http
   - https
 paths:
-  /Jugador/Acciones:
+  /jugador/acciones:
     post:
       operationId: crarJugador
       description: crea un Jugador
@@ -66,7 +66,7 @@ paths:
           schema:
             $ref: '#/definitions/JugadorException'
   
-  /Jugador/Acciones/{numeroDorsal}:
+  /jugador/acciones/{numeroDorsal}:
     get:
       operationId: buscarJugador
       description: crea un Jugador
@@ -115,9 +115,9 @@ paths:
           description: Server error
           schema:
             $ref: '#/definitions/JugadorException'
-  /Jugadores/Lista:
+  /lista:
     get:
-        operationId: listaJugador
+        operationId: listaJugadores
         description: crea un Jugador
         consumes:
           - aplication/json
@@ -132,11 +132,7 @@ paths:
             description: Lista no encontrada
             schema:
               $ref: '#/definitions/JugadorException'
-          
-          505:
-            description: Server error
-            schema:
-              $ref: '#/definitions/JugadorException'
+
     
 definitions:
   Jugador:

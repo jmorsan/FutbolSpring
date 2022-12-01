@@ -115,9 +115,9 @@ paths:
           description: Server error
           schema:
             $ref: '#/definitions/JugadorException'
-  /Jugadores/Lista:
+  /lista:
     get:
-        operationId: listaJugador
+        operationId: listaJugadores
         description: crea un Jugador
         consumes:
           - aplication/json
@@ -132,11 +132,7 @@ paths:
             description: Lista no encontrada
             schema:
               $ref: '#/definitions/JugadorException'
-          
-          505:
-            description: Server error
-            schema:
-              $ref: '#/definitions/JugadorException'
+
     
 definitions:
   Jugador:
